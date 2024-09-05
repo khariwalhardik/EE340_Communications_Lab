@@ -377,24 +377,6 @@ blocks:
     coordinate: [372, 1164]
     rotation: 0
     state: true
-- name: dc_blocker_xx_0
-  id: dc_blocker_xx
-  parameters:
-    affinity: ''
-    alias: ''
-    comment: ''
-    length: '20000'
-    long_form: 'True'
-    maxoutbuf: '0'
-    minoutbuf: '0'
-    type: ff
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [384, 986]
-    rotation: 180
-    state: true
 - name: iir_filter_xxx_0
   id: iir_filter_xxx
   parameters:
@@ -621,9 +603,8 @@ connections:
 - [blocks_throttle_0, '0', qtgui_sink_x_1, '0']
 - [blocks_throttle_1, '0', qtgui_sink_x_0_1, '0']
 - [blocks_throttle_1_0, '0', qtgui_sink_x_0, '0']
-- [dc_blocker_xx_0, '0', rational_resampler_xxx_0_0, '0']
 - [iir_filter_xxx_0, '0', rational_resampler_xxx_0, '0']
-- [low_pass_filter_0, '0', dc_blocker_xx_0, '0']
+- [low_pass_filter_0, '0', rational_resampler_xxx_0_0, '0']
 - [rational_resampler_xxx_0, '0', analog_phase_modulator_fc_0, '0']
 - [rational_resampler_xxx_0_0, '0', blocks_multiply_const_vxx_0, '0']
 

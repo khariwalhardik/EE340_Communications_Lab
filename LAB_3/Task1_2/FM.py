@@ -161,7 +161,6 @@ class FM(gr.top_block, Qt.QWidget):
                 window.WIN_KAISER,
                 6.76))
         self.iir_filter_xxx_0 = filter.iir_filter_ffd([0,1/samp_msg], [1,1], True)
-        self.dc_blocker_xx_0 = filter.dc_blocker_ff(20000, True)
         self.blocks_throttle_1_0 = blocks.throttle(gr.sizeof_float*1, samp_msg,True)
         self.blocks_throttle_1 = blocks.throttle(gr.sizeof_float*1, samp_msg,True)
         self.blocks_throttle_0 = blocks.throttle(gr.sizeof_gr_complex*1, samp_rate,True)
@@ -204,9 +203,8 @@ class FM(gr.top_block, Qt.QWidget):
         self.connect((self.blocks_throttle_0, 0), (self.qtgui_sink_x_1, 0))
         self.connect((self.blocks_throttle_1, 0), (self.qtgui_sink_x_0_1, 0))
         self.connect((self.blocks_throttle_1_0, 0), (self.qtgui_sink_x_0, 0))
-        self.connect((self.dc_blocker_xx_0, 0), (self.rational_resampler_xxx_0_0, 0))
         self.connect((self.iir_filter_xxx_0, 0), (self.rational_resampler_xxx_0, 0))
-        self.connect((self.low_pass_filter_0, 0), (self.dc_blocker_xx_0, 0))
+        self.connect((self.low_pass_filter_0, 0), (self.rational_resampler_xxx_0_0, 0))
         self.connect((self.rational_resampler_xxx_0, 0), (self.analog_phase_modulator_fc_0, 0))
         self.connect((self.rational_resampler_xxx_0_0, 0), (self.blocks_multiply_const_vxx_0, 0))
 
